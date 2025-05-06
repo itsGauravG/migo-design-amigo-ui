@@ -5,12 +5,13 @@ import { cn } from "@/lib/utils";
 import { 
   Home, 
   Calendar, 
-  MessageCircle, 
+  MessageSquare, 
   User, 
   Settings, 
   HelpCircle, 
   Gift,
-  CreditCard
+  CreditCard,
+  Bot
 } from "lucide-react";
 
 interface SidebarItemProps {
@@ -30,10 +31,10 @@ const SidebarItem: React.FC<SidebarItemProps> = ({
     <Link
       to={href}
       className={cn(
-        "flex items-center gap-3 px-3 py-2 rounded-md transition-colors",
+        "flex items-center gap-3 px-3 py-2 rounded-lg transition-all duration-300",
         active 
-          ? "bg-primary text-primary-foreground"
-          : "hover:bg-muted text-muted-foreground hover:text-foreground"
+          ? "bg-primary text-primary-foreground shadow-lg shadow-primary/20" 
+          : "hover:bg-primary/10 text-muted-foreground hover:text-foreground"
       )}
     >
       {icon}
@@ -47,13 +48,13 @@ const Sidebar: React.FC = () => {
   const pathname = location.pathname;
   
   return (
-    <aside className="w-64 border-r border-border h-screen sticky top-0 hidden md:block">
+    <aside className="w-64 border-r border-white/10 h-screen sticky top-0 hidden md:block backdrop-blur-sm bg-background/50">
       <div className="p-6">
-        <Link to="/" className="flex items-center gap-2 mb-8">
-          <div className="w-8 h-8 rounded-md bg-primary flex items-center justify-center">
-            <span className="text-white font-bold">M</span>
+        <Link to="/" className="flex items-center gap-2 mb-10">
+          <div className="w-10 h-10 rounded-lg bg-primary flex items-center justify-center animate-pulse-light">
+            <Bot className="text-white h-6 w-6" />
           </div>
-          <span className="text-xl font-bold">Migo</span>
+          <span className="text-xl font-bold font-space gradient-text">Migo</span>
         </Link>
         
         <nav className="space-y-1">
@@ -70,7 +71,7 @@ const Sidebar: React.FC = () => {
             active={pathname === "/bookings"}
           />
           <SidebarItem 
-            icon={<MessageCircle className="h-5 w-5" />} 
+            icon={<MessageSquare className="h-5 w-5" />} 
             label="Ask Migo" 
             href="/dashboard" 
             active={pathname === "/dashboard"}

@@ -19,6 +19,10 @@ export default {
 			}
 		},
 		extend: {
+			fontFamily: {
+				'inter': ['Inter', 'sans-serif'],
+				'space': ['Space Grotesk', 'sans-serif'],
+			},
 			colors: {
 				border: 'hsl(var(--border))',
 				input: 'hsl(var(--input))',
@@ -64,15 +68,14 @@ export default {
 					ring: 'hsl(var(--sidebar-ring))'
 				},
 				migo: {
-					purple: '#9b87f5',
-					'dark-purple': '#7E69AB',
-					'light-purple': '#E5DEFF',
-					gray: '#8E9196',
-					'light-gray': '#F1F0FB',
+					purple: '#8b5cf6',
+					'dark-purple': '#6d28d9',
+					'light-purple': '#c4b5fd',
+					'teal': '#5eead4',
+					'dark-teal': '#14b8a6',
+					gray: '#71717a',
+					'light-gray': '#f4f4f5',
 				}
-			},
-			fontFamily: {
-				'inter': ['Inter', 'sans-serif'],
 			},
 			borderRadius: {
 				lg: 'var(--radius)',
@@ -81,30 +84,32 @@ export default {
 			},
 			keyframes: {
 				'accordion-down': {
-					from: {
-						height: '0'
-					},
-					to: {
-						height: 'var(--radix-accordion-content-height)'
-					}
+					from: { height: '0' },
+					to: { height: 'var(--radix-accordion-content-height)' }
 				},
 				'accordion-up': {
-					from: {
-						height: 'var(--radix-accordion-content-height)'
-					},
-					to: {
-						height: '0'
-					}
+					from: { height: 'var(--radix-accordion-content-height)' },
+					to: { height: '0' }
 				},
 				'pulse-light': {
 					'0%, 100%': { opacity: '1' },
 					'50%': { opacity: '0.7' },
+				},
+				'float': {
+					'0%, 100%': { transform: 'translateY(0)' },
+					'50%': { transform: 'translateY(-10px)' },
+				},
+				'glow': {
+					'0%, 100%': { boxShadow: '0 0 5px rgba(139, 92, 246, 0.5), 0 0 15px rgba(139, 92, 246, 0.3)' },
+					'50%': { boxShadow: '0 0 15px rgba(94, 234, 212, 0.5), 0 0 30px rgba(94, 234, 212, 0.3)' },
 				}
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
 				'accordion-up': 'accordion-up 0.2s ease-out',
 				'pulse-light': 'pulse-light 2s ease-in-out infinite',
+				'float': 'float 6s ease-in-out infinite',
+				'glow': 'glow 3s ease-in-out infinite',
 			}
 		}
 	},
