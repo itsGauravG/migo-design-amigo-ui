@@ -11,15 +11,17 @@ interface Service {
   image: string;
   rating: number;
   provider: string;
+  description?: string;
 }
 
 interface ServiceCardProps {
   service: Service;
+  onClick?: () => void;
 }
 
-const ServiceCard: React.FC<ServiceCardProps> = ({ service }) => {
+const ServiceCard: React.FC<ServiceCardProps> = ({ service, onClick }) => {
   return (
-    <Card className="h-full overflow-hidden">
+    <Card className="h-full overflow-hidden hover:shadow-md transition-shadow">
       <div className="h-40 bg-muted">
         <img 
           src={service.image} 
@@ -30,7 +32,7 @@ const ServiceCard: React.FC<ServiceCardProps> = ({ service }) => {
       <CardContent className="p-4">
         <div className="flex justify-between items-start mb-2">
           <h4 className="font-medium">{service.title}</h4>
-          <span className="text-lg font-bold">${service.price}</span>
+          <span className="text-lg font-bold">${service.price}/hr</span>
         </div>
         
         <div className="flex items-center text-sm text-muted-foreground mb-2">
@@ -39,6 +41,12 @@ const ServiceCard: React.FC<ServiceCardProps> = ({ service }) => {
             {service.provider}
           </span>
         </div>
+
+        {service.description && (
+          <p className="text-sm text-muted-foreground mb-2 line-clamp-2">
+            {service.description}
+          </p>
+        )}
         
         <div className="flex items-center gap-1">
           <div className="flex">
@@ -63,7 +71,7 @@ const ServiceCard: React.FC<ServiceCardProps> = ({ service }) => {
         </div>
       </CardContent>
       <CardFooter className="p-4 pt-0">
-        <Button className="w-full">Book Now</Button>
+        <Button className="w-full" onClick={onClick}>View Providers</Button>
       </CardFooter>
     </Card>
   );
