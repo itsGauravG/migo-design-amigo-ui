@@ -6,7 +6,7 @@ import { Card, CardContent, CardHeader, CardFooter, CardTitle } from "@/componen
 import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from "@/components/ui/dialog";
-import { calendar, party, user, music } from "lucide-react";
+import { Calendar, User, Music } from "lucide-react"; // Fixed icon imports
 import { toast } from "@/components/ui/use-toast";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 

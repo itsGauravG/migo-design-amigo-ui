@@ -12,20 +12,21 @@ const queryClient = new QueryClient();
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
-    <TooltipProvider>
-      <Toaster />
-      <Sonner />
-      <div className="min-h-screen bg-background text-foreground">
-        <BrowserRouter>
+    {/* Move TooltipProvider inside the main component */}
+    <div className="min-h-screen bg-background text-foreground">
+      <BrowserRouter>
+        <TooltipProvider>
+          <Toaster />
+          <Sonner />
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/dashboard" element={<Dashboard />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
-        </BrowserRouter>
-      </div>
-    </TooltipProvider>
+        </TooltipProvider>
+      </BrowserRouter>
+    </div>
   </QueryClientProvider>
 );
 
