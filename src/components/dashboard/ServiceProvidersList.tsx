@@ -6,7 +6,7 @@ import { Card, CardContent, CardHeader, CardFooter, CardTitle } from "@/componen
 import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from "@/components/ui/dialog";
-import { Calendar, User, Music } from "lucide-react"; // Fixed icon imports
+import { Calendar } from "lucide-react";
 import { toast } from "@/components/ui/use-toast";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 
@@ -22,26 +22,148 @@ const generateProviders = (serviceId: number) => {
   
   const serviceType = categories[serviceId as keyof typeof categories] || "Service";
   
-  // Avatar images for profiles
-  const profileImages = [
-    "https://i.pravatar.cc/150?img=32",
-    "https://i.pravatar.cc/150?img=68",
-    "https://i.pravatar.cc/150?img=36",
-    "https://i.pravatar.cc/150?img=17",
-    "https://i.pravatar.cc/150?img=23",
-    "https://i.pravatar.cc/150?img=45",
-    "https://i.pravatar.cc/150?img=51",
-    "https://i.pravatar.cc/150?img=52",
-    "https://i.pravatar.cc/150?img=53",
-    "https://i.pravatar.cc/150?img=54"
-  ];
+  // Service-specific names and avatar images
+  const serviceSpecificData = {
+    1: { // Event Planner
+      names: [
+        "Emma Richardson", "Michael Bennett", "Sophia Roberts", 
+        "James Anderson", "Olivia Parker", "Daniel Wilson", 
+        "Charlotte Miller", "William Thompson", "Isabella Wright", "Noah Davis"
+      ],
+      avatars: [
+        "https://i.pravatar.cc/150?img=1",
+        "https://i.pravatar.cc/150?img=2",
+        "https://i.pravatar.cc/150?img=3",
+        "https://i.pravatar.cc/150?img=4",
+        "https://i.pravatar.cc/150?img=5",
+        "https://i.pravatar.cc/150?img=6",
+        "https://i.pravatar.cc/150?img=7",
+        "https://i.pravatar.cc/150?img=8",
+        "https://i.pravatar.cc/150?img=9",
+        "https://i.pravatar.cc/150?img=10"
+      ]
+    },
+    2: { // Catering
+      names: [
+        "Lucas Martinez", "Ava Thompson", "Ethan Rodriguez", 
+        "Mia Clark", "Alexander White", "Emily Johnson", 
+        "Benjamin Lee", "Abigail Brown", "Samuel Harris", "Elizabeth Taylor"
+      ],
+      avatars: [
+        "https://i.pravatar.cc/150?img=11",
+        "https://i.pravatar.cc/150?img=12",
+        "https://i.pravatar.cc/150?img=13",
+        "https://i.pravatar.cc/150?img=14",
+        "https://i.pravatar.cc/150?img=15",
+        "https://i.pravatar.cc/150?img=16",
+        "https://i.pravatar.cc/150?img=17",
+        "https://i.pravatar.cc/150?img=18",
+        "https://i.pravatar.cc/150?img=19",
+        "https://i.pravatar.cc/150?img=20"
+      ]
+    },
+    3: { // DJ/Music
+      names: [
+        "DJ Maxwell", "Samantha Beats", "Tyler Rhythm", 
+        "Zoe Harmony", "Blake Groove", "Nadia Sound", 
+        "Leo Tempo", "Aria Melody", "Damon Bass", "Jada Vibes"
+      ],
+      avatars: [
+        "https://i.pravatar.cc/150?img=21",
+        "https://i.pravatar.cc/150?img=22",
+        "https://i.pravatar.cc/150?img=23",
+        "https://i.pravatar.cc/150?img=24",
+        "https://i.pravatar.cc/150?img=25",
+        "https://i.pravatar.cc/150?img=26",
+        "https://i.pravatar.cc/150?img=27",
+        "https://i.pravatar.cc/150?img=28",
+        "https://i.pravatar.cc/150?img=29",
+        "https://i.pravatar.cc/150?img=30"
+      ]
+    },
+    4: { // Cake Artist
+      names: [
+        "Penelope Sugar", "Gabriel Frost", "Lily Bakes", 
+        "Mason Sweet", "Chloe Confection", "Owen Pastry", 
+        "Hazel Delight", "Felix Dessert", "Victoria Cake", "Julian Fondant"
+      ],
+      avatars: [
+        "https://i.pravatar.cc/150?img=31",
+        "https://i.pravatar.cc/150?img=32",
+        "https://i.pravatar.cc/150?img=33",
+        "https://i.pravatar.cc/150?img=34",
+        "https://i.pravatar.cc/150?img=35",
+        "https://i.pravatar.cc/150?img=36",
+        "https://i.pravatar.cc/150?img=37",
+        "https://i.pravatar.cc/150?img=38",
+        "https://i.pravatar.cc/150?img=39",
+        "https://i.pravatar.cc/150?img=40"
+      ]
+    },
+    5: { // Kids Entertainer
+      names: [
+        "Charlie Fun", "Ruby Sparkle", "Max Adventure", 
+        "Rosie Giggles", "Parker Magic", "Luna Bubbles", 
+        "Finn Balloon", "Sadie Rainbow", "Oscar Tricks", "Daisy Wonder"
+      ],
+      avatars: [
+        "https://i.pravatar.cc/150?img=41",
+        "https://i.pravatar.cc/150?img=42",
+        "https://i.pravatar.cc/150?img=43",
+        "https://i.pravatar.cc/150?img=44",
+        "https://i.pravatar.cc/150?img=45",
+        "https://i.pravatar.cc/150?img=46",
+        "https://i.pravatar.cc/150?img=47",
+        "https://i.pravatar.cc/150?img=48",
+        "https://i.pravatar.cc/150?img=49",
+        "https://i.pravatar.cc/150?img=50"
+      ]
+    }
+  };
   
-  const names = [
-    "Jessica Williams", "Michael Johnson", "Sarah Davis", 
-    "David Smith", "Emma Garcia", "James Wilson", 
-    "Olivia Martinez", "William Anderson", "Sophia Thomas", "Daniel Taylor"
-  ];
+  // Get the appropriate names and avatars for this service
+  const { names, avatars } = serviceSpecificData[serviceId as keyof typeof serviceSpecificData] || 
+    serviceSpecificData[1]; // Default to event planner if service not found
   
+  // Generate random reviews with unique reviewer names
+  const generateReviews = () => {
+    // Unique reviewer names that don't overlap with service provider names
+    const reviewerNames = [
+      "Jordan Smith", "Riley Adams", "Drew Johnson", "Casey Williams", 
+      "Taylor Brown", "Quinn Thomas", "Alex Rivera", "Morgan Lewis",
+      "Avery Moore", "Cameron Turner", "Jamie Garcia", "Dakota White"
+    ];
+    
+    const reviewCount = Math.floor(Math.random() * 20) + 10;
+    return Array(5).fill(0).map((_, i) => ({
+      id: i + 1,
+      author: reviewerNames[Math.floor(Math.random() * reviewerNames.length)],
+      rating: Math.floor(Math.random() * 2) + 4, // 4 or 5 stars
+      comment: [
+        "Absolutely amazing service! Highly recommend!",
+        "Very professional and attentive to our needs.",
+        "Great value for the quality provided.",
+        "Exceeded our expectations in every way!",
+        "Would definitely book again for our next event."
+      ][Math.floor(Math.random() * 5)],
+      date: `${Math.floor(Math.random() * 28) + 1}/${Math.floor(Math.random() * 12) + 1}/2023`
+    }));
+  };
+  
+  // Generate price based on service type
+  const getPrice = () => {
+    const basePrices = {
+      1: 120, // Event Planner
+      2: 95,  // Catering
+      3: 85,  // DJ/Music
+      4: 65,  // Cake Artist
+      5: 75   // Kids Entertainer
+    };
+    
+    const basePrice = basePrices[serviceId as keyof typeof basePrices] || 80;
+    return basePrice + Math.floor(Math.random() * 40) - 20; // +/- 20 from base price
+  };
+
   // Project images based on service type
   const getProjectImages = () => {
     switch(serviceId) {
@@ -83,56 +205,71 @@ const generateProviders = (serviceId: number) => {
         ];
     }
   };
-  
-  // Generate random reviews
-  const generateReviews = () => {
-    const reviewCount = Math.floor(Math.random() * 30) + 10;
-    return Array(5).fill(0).map((_, i) => ({
-      id: i + 1,
-      author: names[Math.floor(Math.random() * names.length)],
-      rating: Math.floor(Math.random() * 2) + 4, // 4 or 5 stars
-      comment: [
-        "Absolutely amazing service! Highly recommend!",
-        "Very professional and attentive to our needs.",
-        "Great value for the quality provided.",
-        "Exceeded our expectations in every way!",
-        "Would definitely book again for our next event."
-      ][Math.floor(Math.random() * 5)],
-      date: `${Math.floor(Math.random() * 28) + 1}/${Math.floor(Math.random() * 12) + 1}/2023`
-    }));
-  };
-  
-  // Generate price based on service type
-  const getPrice = () => {
-    const basePrices = {
-      1: 120, // Event Planner
-      2: 95,  // Catering
-      3: 85,  // DJ/Music
-      4: 65,  // Cake Artist
-      5: 75   // Kids Entertainer
-    };
-    
-    const basePrice = basePrices[serviceId as keyof typeof basePrices] || 80;
-    return basePrice + Math.floor(Math.random() * 40) - 20; // +/- 20 from base price
-  };
 
   // Get project images for current service type
   const projectImages = getProjectImages();
 
-  // Generate service provider data
+  // Generate service-specific title name
+  const getTitleAndDescription = (index: number) => {
+    const titles = {
+      1: [
+        "Birthday Extravaganza", 
+        "Wedding Ceremony", 
+        "Corporate Event"
+      ],
+      2: [
+        "Gourmet Buffet", 
+        "Cocktail Reception", 
+        "Family Gathering"
+      ],
+      3: [
+        "Dance Party Mix", 
+        "Wedding Reception", 
+        "Corporate Function"
+      ],
+      4: [
+        "Birthday Spectacular", 
+        "Wedding Elegance", 
+        "Themed Celebration"
+      ],
+      5: [
+        "Magic Show Party", 
+        "Balloon Animals Fun", 
+        "Face Painting Festival"
+      ]
+    };
+
+    const descriptions = {
+      1: `Experienced ${serviceType} specializing in creating memorable experiences for special occasions and celebrations of all sizes.`,
+      2: `Professional ${serviceType} offering delicious menu options customized to your tastes and dietary needs.`,
+      3: `Talented ${serviceType} with an extensive music library to keep your guests entertained and the dance floor packed.`,
+      4: `Creative ${serviceType} who designs beautiful and delicious custom cakes for any special occasion.`,
+      5: `Engaging ${serviceType} who specializes in keeping children entertained with fun activities and performances.`
+    };
+
+    return {
+      serviceTitles: titles[serviceId as keyof typeof titles] || ["Event", "Party", "Celebration"],
+      description: descriptions[serviceId as keyof typeof descriptions] || 
+        `Professional ${serviceType} with years of experience in the industry.`
+    };
+  };
+
+  const { serviceTitles, description } = getTitleAndDescription(serviceId);
+
+  // Generate service provider data with unique names and avatars
   return Array(10).fill(0).map((_, i) => ({
     id: i + 1,
     name: names[i],
     price: getPrice(),
-    image: profileImages[i],
+    image: avatars[i],
     rating: (4 + Math.random()).toFixed(1),
     experience: Math.floor(Math.random() * 15) + 2,
-    description: `Experienced ${serviceType} with a passion for creating memorable experiences. Specializing in birthday parties and celebrations of all sizes.`,
+    description: description,
     reviews: generateReviews(),
     projects: [
-      { id: 1, title: "Birthday Party", date: "15/04/2023", image: projectImages[0] },
-      { id: 2, title: "Garden Celebration", date: "27/07/2023", image: projectImages[1] },
-      { id: 3, title: "Family Gathering", date: "10/12/2023", image: projectImages[2] }
+      { id: 1, title: serviceTitles[0], date: "15/04/2023", image: projectImages[0] },
+      { id: 2, title: serviceTitles[1], date: "27/07/2023", image: projectImages[1] },
+      { id: 3, title: serviceTitles[2], date: "10/12/2023", image: projectImages[2] }
     ]
   }));
 };

@@ -19,7 +19,7 @@ interface ServiceCardProps {
   onClick?: () => void;
 }
 
-// Service category images
+// Service category images with high-quality Unsplash images
 const categoryImages = {
   "Event Planner": "https://images.unsplash.com/photo-1505236858219-8359eb29e329?w=500&h=300&fit=crop",
   "Catering": "https://images.unsplash.com/photo-1565538810643-b5bdb714032a?w=500&h=300&fit=crop",
