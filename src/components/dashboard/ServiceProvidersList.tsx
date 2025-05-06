@@ -21,11 +21,68 @@ const generateProviders = (serviceId: number) => {
   };
   
   const serviceType = categories[serviceId as keyof typeof categories] || "Service";
+  
+  // Avatar images for profiles
+  const profileImages = [
+    "https://i.pravatar.cc/150?img=32",
+    "https://i.pravatar.cc/150?img=68",
+    "https://i.pravatar.cc/150?img=36",
+    "https://i.pravatar.cc/150?img=17",
+    "https://i.pravatar.cc/150?img=23",
+    "https://i.pravatar.cc/150?img=45",
+    "https://i.pravatar.cc/150?img=51",
+    "https://i.pravatar.cc/150?img=52",
+    "https://i.pravatar.cc/150?img=53",
+    "https://i.pravatar.cc/150?img=54"
+  ];
+  
   const names = [
     "Jessica Williams", "Michael Johnson", "Sarah Davis", 
     "David Smith", "Emma Garcia", "James Wilson", 
     "Olivia Martinez", "William Anderson", "Sophia Thomas", "Daniel Taylor"
   ];
+  
+  // Project images based on service type
+  const getProjectImages = () => {
+    switch(serviceId) {
+      case 1: // Event Planner
+        return [
+          "https://images.unsplash.com/photo-1519167758481-83f550bb49b3?w=400&h=300&fit=crop",
+          "https://images.unsplash.com/photo-1511795409834-ef04bbd61622?w=400&h=300&fit=crop",
+          "https://images.unsplash.com/photo-1531058020387-3be344556be6?w=400&h=300&fit=crop"
+        ];
+      case 2: // Catering
+        return [
+          "https://images.unsplash.com/photo-1555244162-803834f70033?w=400&h=300&fit=crop",
+          "https://images.unsplash.com/photo-1622483767028-3f66f32aef97?w=400&h=300&fit=crop",
+          "https://images.unsplash.com/photo-1607478900766-efe13248b125?w=400&h=300&fit=crop"
+        ];
+      case 3: // DJ/Music
+        return [
+          "https://images.unsplash.com/photo-1571266028243-60c713e47418?w=400&h=300&fit=crop",
+          "https://images.unsplash.com/photo-1429962714451-bb934ecdc4ec?w=400&h=300&fit=crop",
+          "https://images.unsplash.com/photo-1516873240891-4bf014598ab4?w=400&h=300&fit=crop"
+        ];
+      case 4: // Cake Artist
+        return [
+          "https://images.unsplash.com/photo-1546379859-7cd361954644?w=400&h=300&fit=crop",
+          "https://images.unsplash.com/photo-1606890658317-7d14490b76fd?w=400&h=300&fit=crop",
+          "https://images.unsplash.com/photo-1562777717-dc6984f65a63?w=400&h=300&fit=crop"
+        ];
+      case 5: // Kids Entertainer
+        return [
+          "https://images.unsplash.com/photo-1597413545419-4013431dbfec?w=400&h=300&fit=crop",
+          "https://images.unsplash.com/photo-1642456074321-699978ea3919?w=400&h=300&fit=crop",
+          "https://images.unsplash.com/photo-1587654780291-39c9404d746b?w=400&h=300&fit=crop"
+        ];
+      default:
+        return [
+          "https://images.unsplash.com/photo-1517457373958-b7bdd4587205?w=400&h=300&fit=crop",
+          "https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?w=400&h=300&fit=crop",
+          "https://images.unsplash.com/photo-1496024840928-4c417adf211d?w=400&h=300&fit=crop"
+        ];
+    }
+  };
   
   // Generate random reviews
   const generateReviews = () => {
@@ -59,20 +116,23 @@ const generateProviders = (serviceId: number) => {
     return basePrice + Math.floor(Math.random() * 40) - 20; // +/- 20 from base price
   };
 
+  // Get project images for current service type
+  const projectImages = getProjectImages();
+
   // Generate service provider data
   return Array(10).fill(0).map((_, i) => ({
     id: i + 1,
     name: names[i],
     price: getPrice(),
-    image: `/placeholder.svg`,
+    image: profileImages[i],
     rating: (4 + Math.random()).toFixed(1),
     experience: Math.floor(Math.random() * 15) + 2,
     description: `Experienced ${serviceType} with a passion for creating memorable experiences. Specializing in birthday parties and celebrations of all sizes.`,
     reviews: generateReviews(),
     projects: [
-      { id: 1, title: "Birthday Party", date: "15/04/2023", image: "/placeholder.svg" },
-      { id: 2, title: "Garden Celebration", date: "27/07/2023", image: "/placeholder.svg" },
-      { id: 3, title: "Family Gathering", date: "10/12/2023", image: "/placeholder.svg" }
+      { id: 1, title: "Birthday Party", date: "15/04/2023", image: projectImages[0] },
+      { id: 2, title: "Garden Celebration", date: "27/07/2023", image: projectImages[1] },
+      { id: 3, title: "Family Gathering", date: "10/12/2023", image: projectImages[2] }
     ]
   }));
 };

@@ -19,12 +19,24 @@ interface ServiceCardProps {
   onClick?: () => void;
 }
 
+// Service category images
+const categoryImages = {
+  "Event Planner": "https://images.unsplash.com/photo-1505236858219-8359eb29e329?w=500&h=300&fit=crop",
+  "Catering": "https://images.unsplash.com/photo-1565538810643-b5bdb714032a?w=500&h=300&fit=crop",
+  "DJ/Music": "https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=500&h=300&fit=crop",
+  "Cake Artist": "https://images.unsplash.com/photo-1535141192574-5d4897c12636?w=500&h=300&fit=crop",
+  "Kids Entertainer": "https://images.unsplash.com/photo-1541727261595-94c9ef699058?w=500&h=300&fit=crop"
+};
+
 const ServiceCard: React.FC<ServiceCardProps> = ({ service, onClick }) => {
+  // Use category image if available, otherwise use the service's image
+  const imageUrl = categoryImages[service.title as keyof typeof categoryImages] || service.image;
+
   return (
     <Card className="h-full overflow-hidden hover:shadow-md transition-shadow">
       <div className="h-40 bg-muted">
         <img 
-          src={service.image} 
+          src={imageUrl} 
           alt={service.title} 
           className="w-full h-full object-cover"
         />

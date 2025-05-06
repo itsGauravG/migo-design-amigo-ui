@@ -11,7 +11,8 @@ import {
   HelpCircle, 
   Gift,
   CreditCard,
-  Bot
+  Bot,
+  ShoppingCart
 } from "lucide-react";
 
 interface SidebarItemProps {
@@ -19,13 +20,15 @@ interface SidebarItemProps {
   label: string;
   href: string;
   active?: boolean;
+  badge?: number;
 }
 
 const SidebarItem: React.FC<SidebarItemProps> = ({ 
   icon, 
   label, 
   href, 
-  active = false 
+  active = false,
+  badge
 }) => {
   return (
     <Link
@@ -39,6 +42,11 @@ const SidebarItem: React.FC<SidebarItemProps> = ({
     >
       {icon}
       <span>{label}</span>
+      {badge !== undefined && badge > 0 && (
+        <span className="ml-auto bg-primary text-primary-foreground text-xs font-medium rounded-full px-2 py-0.5">
+          {badge}
+        </span>
+      )}
     </Link>
   );
 };
@@ -46,6 +54,9 @@ const SidebarItem: React.FC<SidebarItemProps> = ({
 const Sidebar: React.FC = () => {
   const location = useLocation();
   const pathname = location.pathname;
+  
+  // For demo purposes, we'll show 3 items in the cart
+  const cartItemCount = 3;
   
   return (
     <aside className="w-64 border-r border-white/10 h-screen sticky top-0 hidden md:block backdrop-blur-sm bg-background/50">
@@ -75,6 +86,13 @@ const Sidebar: React.FC = () => {
             label="Ask Migo" 
             href="/dashboard" 
             active={pathname === "/dashboard"}
+          />
+          <SidebarItem 
+            icon={<ShoppingCart className="h-5 w-5" />} 
+            label="Cart" 
+            href="/cart" 
+            active={pathname === "/cart"}
+            badge={cartItemCount}
           />
           <SidebarItem 
             icon={<Gift className="h-5 w-5" />} 
