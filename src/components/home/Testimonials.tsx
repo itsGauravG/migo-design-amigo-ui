@@ -13,7 +13,7 @@ interface TestimonialProps {
 
 const Testimonial: React.FC<TestimonialProps> = ({ quote, name, role, avatarUrl, rating }) => {
   return (
-    <Card className="h-full">
+    <Card className="h-full bg-white shadow-sm hover:shadow-md transition-all">
       <CardContent className="p-6">
         <div className="flex gap-1 mb-4">
           {Array.from({ length: 5 }).map((_, i) => (
@@ -31,12 +31,12 @@ const Testimonial: React.FC<TestimonialProps> = ({ quote, name, role, avatarUrl,
         <p className="text-muted-foreground mb-6">{quote}</p>
         
         <div className="flex items-center gap-3">
-          <Avatar className="h-10 w-10">
+          <Avatar className="h-10 w-10 border border-gray-100">
             {avatarUrl ? <AvatarImage src={avatarUrl} alt={name} /> : null}
-            <AvatarFallback>{name.slice(0, 2).toUpperCase()}</AvatarFallback>
+            <AvatarFallback className="bg-primary/10 text-primary">{name.slice(0, 2).toUpperCase()}</AvatarFallback>
           </Avatar>
           <div>
-            <p className="font-medium text-sm">{name}</p>
+            <p className="font-medium text-sm text-gray-800">{name}</p>
             <p className="text-xs text-muted-foreground">{role}</p>
           </div>
         </div>
@@ -47,10 +47,10 @@ const Testimonial: React.FC<TestimonialProps> = ({ quote, name, role, avatarUrl,
 
 const Testimonials: React.FC = () => {
   return (
-    <section className="py-16 bg-white">
+    <section className="py-16 bg-gradient-to-br from-white to-blue-50">
       <div className="container px-4 mx-auto">
         <div className="text-center mb-12">
-          <h2 className="text-2xl md:text-3xl font-bold mb-4">What Our Users Say</h2>
+          <h2 className="text-2xl md:text-3xl font-bold mb-4 text-gray-800">What Our Users Say</h2>
           <p className="text-muted-foreground max-w-2xl mx-auto">
             Migo is helping thousands of people get things done while creating opportunities for skilled providers.
           </p>

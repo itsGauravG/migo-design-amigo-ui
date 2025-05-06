@@ -19,20 +19,20 @@ const ServiceCard: React.FC<ServiceCardProps> = ({ title, icon, href, className 
   <Link 
     to={href}
     className={cn(
-      "flex flex-col items-center justify-center p-6 glass-card rounded-xl transition-all duration-300 hover:shadow-lg hover:shadow-primary/20 group",
+      "flex flex-col items-center justify-center p-6 glass-card rounded-xl transition-all duration-300 hover:shadow-lg hover:shadow-primary/10 group",
       className
     )}
   >
     <div className="w-14 h-14 rounded-lg bg-primary/10 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
       <div className="text-primary">{icon}</div>
     </div>
-    <h3 className="font-medium text-center group-hover:text-primary transition-colors">{title}</h3>
+    <h3 className="font-medium text-center text-gray-800 group-hover:text-primary transition-colors">{title}</h3>
   </Link>
 );
 
 const PopularServices: React.FC = () => {
   return (
-    <section className="py-20 relative overflow-hidden">
+    <section className="py-20 relative overflow-hidden bg-white">
       <div className="absolute inset-0 bg-grid opacity-25"></div>
       <div className="container px-4 mx-auto relative z-10">
         <div className="text-center mb-12">
@@ -83,7 +83,7 @@ const PopularServices: React.FC = () => {
         <div className="text-center mt-12 space-y-4">
           <Button 
             variant="outline" 
-            className="bg-background/50 backdrop-blur-sm border border-primary/20 hover:border-primary/80 hover:bg-primary/5"
+            className="bg-white/80 backdrop-blur-sm border border-gray-200 hover:border-primary/50 hover:bg-primary/5"
           >
             <Link to="/services" className="flex items-center gap-2">
               View All Services
@@ -92,19 +92,19 @@ const PopularServices: React.FC = () => {
         </div>
 
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-16 max-w-4xl mx-auto">
-          <div className="text-center p-4">
+          <div className="text-center p-4 glass-card rounded-lg">
             <div className="text-2xl font-bold text-primary">25+</div>
             <p className="text-sm text-muted-foreground">Service Categories</p>
           </div>
-          <div className="text-center p-4">
+          <div className="text-center p-4 glass-card rounded-lg">
             <div className="text-2xl font-bold text-primary">5,000+</div>
             <p className="text-sm text-muted-foreground">Service Providers</p>
           </div>
-          <div className="text-center p-4">
+          <div className="text-center p-4 glass-card rounded-lg">
             <div className="text-2xl font-bold text-primary">98%</div>
             <p className="text-sm text-muted-foreground">Customer Satisfaction</p>
           </div>
-          <div className="text-center p-4">
+          <div className="text-center p-4 glass-card rounded-lg">
             <div className="text-2xl font-bold text-primary">24/7</div>
             <p className="text-sm text-muted-foreground">AI-Powered Support</p>
           </div>

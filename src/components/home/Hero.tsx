@@ -25,17 +25,17 @@ const Hero: React.FC = () => {
   };
   
   return (
-    <section className="relative py-20 md:py-32 overflow-hidden bg-background">
+    <section className="relative py-20 md:py-32 overflow-hidden bg-background light-gradient-bg">
       {/* Background grid */}
-      <div className="absolute inset-0 bg-grid opacity-25"></div>
+      <div className="absolute inset-0 bg-grid opacity-50"></div>
       
       {/* Animated circles */}
-      <div className="absolute top-20 left-20 w-96 h-96 bg-primary/20 rounded-full filter blur-3xl animate-float"></div>
-      <div className="absolute bottom-20 right-20 w-96 h-96 bg-accent/20 rounded-full filter blur-3xl animate-float" style={{ animationDelay: "2s" }}></div>
+      <div className="absolute top-20 left-20 w-96 h-96 bg-primary/10 rounded-full filter blur-3xl animate-float"></div>
+      <div className="absolute bottom-20 right-20 w-96 h-96 bg-accent/10 rounded-full filter blur-3xl animate-float" style={{ animationDelay: "2s" }}></div>
       
       <div className="container mx-auto text-center relative z-10 px-4">
         <div className={`transition-all duration-1000 transform ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
-          <h1 className="text-4xl md:text-6xl font-bold mb-6 font-space">
+          <h1 className="text-4xl md:text-6xl font-bold mb-6 font-space text-foreground">
             Enter your end goal —<br /> 
             <span className="gradient-text">we'll handle the rest </span> 
             <span className="text-4xl">🍻</span>
@@ -51,7 +51,7 @@ const Hero: React.FC = () => {
               <div className="relative flex-1 group">
                 <Input
                   placeholder="What do you need done?"
-                  className="h-14 text-base pl-12 pr-4 bg-background/60 backdrop-blur-sm border-white/10 shadow-lg transition-all duration-300 group-hover:border-primary/50 group-hover:shadow-primary/20"
+                  className="h-14 text-base pl-12 pr-4 bg-white shadow-sm transition-all duration-300 group-hover:border-primary/50 group-hover:shadow-md"
                   value={goal}
                   onChange={(e) => setGoal(e.target.value)}
                 />
@@ -60,7 +60,7 @@ const Hero: React.FC = () => {
               <Button 
                 type="submit" 
                 size="lg" 
-                className="h-14 px-8 bg-primary hover:bg-primary/90 text-white shadow-lg shadow-primary/20 hover:shadow-primary/40 transition-all duration-300"
+                className="h-14 px-8 bg-primary hover:bg-primary/90 text-white shadow-md hover:shadow-lg transition-all duration-300"
               >
                 Ask Migo
                 <ArrowRight className="h-4 w-4 ml-2" />
@@ -73,46 +73,46 @@ const Hero: React.FC = () => {
           </form>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16 max-w-4xl mx-auto">
-            <div className={`glass-card rounded-xl p-6 transition-all duration-1000 delay-100 transform ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'} hover:shadow-primary/20 hover:border-primary/20 transition-all duration-300`}>
+            <div className={`glass-card rounded-xl p-6 transition-all duration-1000 delay-100 transform ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'} hover:shadow-lg hover:border-primary/20 transition-all duration-300`}>
               <div className="w-14 h-14 bg-primary/10 rounded-xl flex items-center justify-center mb-4 mx-auto">
                 <MessageSquare className="h-6 w-6 text-primary" />
               </div>
-              <h3 className="font-semibold mb-2 font-space">Describe your need</h3>
+              <h3 className="font-semibold mb-2 font-space text-gray-800">Describe your need</h3>
               <p className="text-sm text-muted-foreground">
                 Tell us what you're trying to accomplish in plain language.
               </p>
             </div>
             
-            <div className={`glass-card rounded-xl p-6 transition-all duration-1000 delay-200 transform ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'} hover:shadow-primary/20 hover:border-primary/20 transition-all duration-300`}>
+            <div className={`glass-card rounded-xl p-6 transition-all duration-1000 delay-200 transform ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'} hover:shadow-lg hover:border-primary/20 transition-all duration-300`}>
               <div className="w-14 h-14 bg-primary/10 rounded-xl flex items-center justify-center mb-4 mx-auto">
                 <Bot className="h-6 w-6 text-primary" />
               </div>
-              <h3 className="font-semibold mb-2 font-space">Our AI agent breaks it down</h3>
+              <h3 className="font-semibold mb-2 font-space text-gray-800">Our AI agent breaks it down</h3>
               <p className="text-sm text-muted-foreground">
                 Amigo analyzes your goal and identifies all required services.
               </p>
             </div>
             
-            <div className={`glass-card rounded-xl p-6 transition-all duration-1000 delay-300 transform ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'} hover:shadow-primary/20 hover:border-primary/20 transition-all duration-300`}>
+            <div className={`glass-card rounded-xl p-6 transition-all duration-1000 delay-300 transform ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'} hover:shadow-lg hover:border-primary/20 transition-all duration-300`}>
               <div className="w-14 h-14 bg-primary/10 rounded-xl flex items-center justify-center mb-4 mx-auto">
                 <Star className="h-6 w-6 text-primary" />
               </div>
-              <h3 className="font-semibold mb-2 font-space">You see matching services</h3>
+              <h3 className="font-semibold mb-2 font-space text-gray-800">You see matching services</h3>
               <p className="text-sm text-muted-foreground">
                 Browse and book vetted local service providers instantly.
               </p>
             </div>
           </div>
           
-          <div className={`glass-card rounded-xl p-8 border border-white/10 shadow-lg max-w-4xl mx-auto transition-all duration-1000 delay-400 transform ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
+          <div className={`glass-card rounded-xl p-8 shadow-md max-w-4xl mx-auto transition-all duration-1000 delay-400 transform ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
             <h3 className="font-semibold mb-6 text-xl font-space gradient-text inline-block">See how it works</h3>
             <div className="flex flex-col md:flex-row gap-6 items-center">
-              <div className="glass-card rounded-lg p-6 md:w-1/2">
+              <div className="glass-card bg-white/90 rounded-lg p-6 md:w-1/2">
                 <p className="font-medium text-sm mb-2 text-muted-foreground">You tell Migo:</p>
                 <p className="text-lg font-semibold gradient-text">"I need to host a 50th birthday party"</p>
               </div>
               <ArrowRight className="hidden md:block h-6 w-6 text-primary animate-pulse-light" />
-              <div className="glass-card rounded-lg p-6 md:w-1/2">
+              <div className="glass-card bg-white/90 rounded-lg p-6 md:w-1/2">
                 <p className="font-medium text-sm mb-2 text-muted-foreground">Migo finds:</p>
                 <ul className="text-sm text-left grid grid-cols-2 gap-x-4 gap-y-2">
                   <li className="flex items-center"><Zap className="h-4 w-4 mr-2 text-accent" />Caterers</li>
