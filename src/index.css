@@ -114,7 +114,8 @@
   }
 
   .gradient-text {
-    @apply bg-clip-text text-transparent bg-gradient-to-r from-primary to-accent;
+    @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(to right, #8B5CF6, #5EEAD4);
   }
 
   .animate-float {
