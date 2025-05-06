@@ -25,9 +25,12 @@ const Hero: React.FC = () => {
   };
   
   return (
-    <section className="relative py-20 md:py-32 overflow-hidden bg-background light-gradient-bg">
+    <section className="relative py-20 md:py-32 overflow-hidden bg-background">
+      {/* Dynamic gradient background */}
+      <div className="absolute inset-0 animated-gradient"></div>
+      
       {/* Background grid */}
-      <div className="absolute inset-0 bg-grid opacity-50"></div>
+      <div className="absolute inset-0 bg-grid opacity-30"></div>
       
       {/* Animated circles */}
       <div className="absolute top-20 left-20 w-96 h-96 bg-primary/10 rounded-full filter blur-3xl animate-float"></div>
