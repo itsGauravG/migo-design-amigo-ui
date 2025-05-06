@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { 
-  Wrench, Spray, Box, Tool, Flower2, Computer, 
+  Wrench, Box, Flower2, Computer, 
   Hammer, Car, MapPin, Palette, Camera, Music 
 } from "lucide-react";
 
@@ -52,7 +52,7 @@ const PopularServices: React.FC = () => {
           <ServiceCard 
             title="House Cleaning" 
             href="/services/cleaning"
-            icon={<Spray className="h-6 w-6" />}
+            icon={<MapPin className="h-6 w-6" />}
           />
           
           <ServiceCard 
@@ -64,7 +64,7 @@ const PopularServices: React.FC = () => {
           <ServiceCard 
             title="Handyman" 
             href="/services/handyman"
-            icon={<Tool className="h-6 w-6" />}
+            icon={<Hammer className="h-6 w-6" />}
           />
           
           <ServiceCard 
