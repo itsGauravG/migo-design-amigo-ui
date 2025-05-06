@@ -2,8 +2,10 @@
 import React, { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { ArrowRight, Zap, Star, MessageSquare, Bot } from "lucide-react";
+import { ArrowRight, Zap, Star, MessageSquare, Bot, Calendar, Check, User } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
+import { Card, CardContent } from "@/components/ui/card";
 
 const Hero: React.FC = () => {
   const [goal, setGoal] = useState("");
@@ -104,6 +106,159 @@ const Hero: React.FC = () => {
               <p className="text-sm text-muted-foreground">
                 Browse and book vetted local service providers instantly.
               </p>
+            </div>
+          </div>
+          
+          {/* Dashboard Preview Cards Section */}
+          <div className={`max-w-6xl mx-auto mb-16 transition-all duration-1000 delay-400 transform ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
+            <h3 className="font-semibold mb-8 text-2xl font-space gradient-text inline-block">See how our dashboard works</h3>
+            <div className="flex flex-col md:flex-row gap-6 items-center justify-center">
+              {/* Featured Dashboard Preview Card */}
+              <Card className="w-full md:w-2/3 bg-white shadow-lg overflow-hidden border-0">
+                <CardContent className="p-0 relative">
+                  <div className="bg-gradient-to-r from-primary/10 to-accent/10 p-6">
+                    <h4 className="font-medium text-lg mb-3">Available Service Providers</h4>
+                    <p className="text-sm text-muted-foreground mb-4">Find and book the perfect match for your needs</p>
+                    
+                    <div className="space-y-4">
+                      {/* Service Provider 1 */}
+                      <div className="flex items-center gap-4 bg-white p-4 rounded-lg shadow-sm">
+                        <Avatar className="h-12 w-12 border-2 border-primary/20">
+                          <AvatarImage src="https://i.pravatar.cc/150?img=32" alt="Sarah Johnson" />
+                          <AvatarFallback>SJ</AvatarFallback>
+                        </Avatar>
+                        <div className="flex-1">
+                          <h5 className="font-medium">Sarah Johnson</h5>
+                          <p className="text-xs text-muted-foreground">Interior Designer • 4.9 ⭐</p>
+                        </div>
+                        <Button size="sm" variant="outline" className="flex gap-2 items-center">
+                          <Calendar className="h-4 w-4" />
+                          <span>Book</span>
+                        </Button>
+                      </div>
+                      
+                      {/* Service Provider 2 */}
+                      <div className="flex items-center gap-4 bg-white p-4 rounded-lg shadow-sm">
+                        <Avatar className="h-12 w-12 border-2 border-accent/20">
+                          <AvatarImage src="https://i.pravatar.cc/150?img=68" alt="Marcus Chen" />
+                          <AvatarFallback>MC</AvatarFallback>
+                        </Avatar>
+                        <div className="flex-1">
+                          <h5 className="font-medium">Marcus Chen</h5>
+                          <p className="text-xs text-muted-foreground">Plumbing Expert • 4.8 ⭐</p>
+                        </div>
+                        <Button size="sm" variant="outline" className="flex gap-2 items-center">
+                          <Calendar className="h-4 w-4" />
+                          <span>Book</span>
+                        </Button>
+                      </div>
+                    </div>
+                    
+                    <div className="absolute top-4 right-4">
+                      <div className="flex -space-x-2">
+                        <Avatar className="border-2 border-white h-8 w-8">
+                          <AvatarImage src="https://i.pravatar.cc/150?img=36" />
+                          <AvatarFallback>U1</AvatarFallback>
+                        </Avatar>
+                        <Avatar className="border-2 border-white h-8 w-8">
+                          <AvatarImage src="https://i.pravatar.cc/150?img=17" />
+                          <AvatarFallback>U2</AvatarFallback>
+                        </Avatar>
+                        <Avatar className="border-2 border-white h-8 w-8">
+                          <AvatarImage src="https://i.pravatar.cc/150?img=23" />
+                          <AvatarFallback>U3</AvatarFallback>
+                        </Avatar>
+                      </div>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+              
+              {/* Sidebar Cards */}
+              <div className="w-full md:w-1/3 grid grid-cols-1 gap-4">
+                {/* User Reviews Card */}
+                <Card className="bg-white shadow-md border-0 overflow-hidden">
+                  <CardContent className="p-4">
+                    <div className="flex items-start gap-3">
+                      <Avatar className="h-10 w-10">
+                        <AvatarImage src="https://i.pravatar.cc/150?img=45" alt="User" />
+                        <AvatarFallback>JD</AvatarFallback>
+                      </Avatar>
+                      <div>
+                        <h5 className="text-sm font-medium">John D.</h5>
+                        <p className="text-xs text-muted-foreground mb-2">Home Renovation</p>
+                        <div className="flex items-center text-amber-400 mb-2">
+                          <Star className="h-3 w-3 fill-current" />
+                          <Star className="h-3 w-3 fill-current" />
+                          <Star className="h-3 w-3 fill-current" />
+                          <Star className="h-3 w-3 fill-current" />
+                          <Star className="h-3 w-3 fill-current" />
+                        </div>
+                        <p className="text-xs">
+                          "Found amazing contractors for my kitchen remodel within minutes!"
+                        </p>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+                
+                {/* Service Features Card */}
+                <Card className="bg-gradient-to-br from-primary/5 to-accent/5 shadow-md border-0">
+                  <CardContent className="p-4">
+                    <h5 className="text-sm font-medium mb-3">Popular Service Features</h5>
+                    <ul className="space-y-2">
+                      <li className="flex items-center gap-2 text-xs">
+                        <Check className="h-4 w-4 text-primary" />
+                        <span>Instant booking confirmation</span>
+                      </li>
+                      <li className="flex items-center gap-2 text-xs">
+                        <Check className="h-4 w-4 text-primary" />
+                        <span>Verified service providers</span>
+                      </li>
+                      <li className="flex items-center gap-2 text-xs">
+                        <Check className="h-4 w-4 text-primary" />
+                        <span>AI-powered service matching</span>
+                      </li>
+                      <li className="flex items-center gap-2 text-xs">
+                        <Check className="h-4 w-4 text-primary" />
+                        <span>Seamless payment processing</span>
+                      </li>
+                    </ul>
+                  </CardContent>
+                </Card>
+                
+                {/* Service Provider Highlights */}
+                <Card className="bg-white shadow-md border-0">
+                  <CardContent className="p-4">
+                    <div className="flex items-center gap-3 mb-3">
+                      <User className="h-5 w-5 text-primary" />
+                      <h5 className="text-sm font-medium">Top Rated Providers</h5>
+                    </div>
+                    <div className="flex flex-wrap gap-2 justify-center">
+                      <Avatar className="h-10 w-10 border-2 border-primary/20">
+                        <AvatarImage src="https://i.pravatar.cc/150?img=51" />
+                        <AvatarFallback>P1</AvatarFallback>
+                      </Avatar>
+                      <Avatar className="h-10 w-10 border-2 border-primary/20">
+                        <AvatarImage src="https://i.pravatar.cc/150?img=52" />
+                        <AvatarFallback>P2</AvatarFallback>
+                      </Avatar>
+                      <Avatar className="h-10 w-10 border-2 border-primary/20">
+                        <AvatarImage src="https://i.pravatar.cc/150?img=53" />
+                        <AvatarFallback>P3</AvatarFallback>
+                      </Avatar>
+                      <Avatar className="h-10 w-10 border-2 border-primary/20">
+                        <AvatarImage src="https://i.pravatar.cc/150?img=54" />
+                        <AvatarFallback>P4</AvatarFallback>
+                      </Avatar>
+                      <Avatar className="h-10 w-10 border-2 border-primary/20">
+                        <AvatarImage src="https://i.pravatar.cc/150?img=55" />
+                        <AvatarFallback>P5</AvatarFallback>
+                      </Avatar>
+                    </div>
+                  </CardContent>
+                </Card>
+              </div>
             </div>
           </div>
           

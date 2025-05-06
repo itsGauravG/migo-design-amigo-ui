@@ -156,4 +156,24 @@
   .light-gradient-bg {
     @apply bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50;
   }
+
+  .animated-gradient {
+    background: linear-gradient(130deg, rgba(139, 92, 246, 0.08) 0%, rgba(94, 234, 212, 0.08) 25%, 
+                                rgba(249, 168, 212, 0.08) 50%, rgba(139, 92, 246, 0.08) 75%, 
+                                rgba(94, 234, 212, 0.08) 100%);
+    background-size: 400% 400%;
+    animation: gradient-shift 15s ease infinite;
+  }
+
+  @keyframes gradient-shift {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
 }
